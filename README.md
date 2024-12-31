@@ -122,93 +122,116 @@ graph TD
 - Advanced appointment scheduling features
 
 
-## RAG in PDF
+# RAG in PDF
 
-The following file formats are supported and their corresponding chunking methods.
+This project demonstrates how to implement **Retrieval-Augmented Generation (RAG)** using different file formats, chunking methods, and conversational forms in a chatbot.
 
+## Supported File Formats and Chunking Methods
 
-ScreenShot:
-![Screenshot](https://raw.githubusercontent.com/prabigya-pathak108/ConvoAgentiChatbot/refs/heads/main/images/supported_file_formats.PNG)
-![Screenshot](https://raw.githubusercontent.com/prabigya-pathak108/ConvoAgentiChatbot/refs/heads/main/images/chunking_methods.PNG)
+The following file formats are supported along with their corresponding chunking methods:
 
-Lets upload one pdf and check RAG.
-We will be using Recursive Character splitting with chunk size=1000 and margin =200
-I will be using my own CV for this.
+![Supported File Formats](https://raw.githubusercontent.com/prabigya-pathak108/ConvoAgentiChatbot/refs/heads/main/images/supported_file_formats.PNG)
+![Chunking Methods](https://raw.githubusercontent.com/prabigya-pathak108/ConvoAgentiChatbot/refs/heads/main/images/chunking_methods.PNG)
 
+## RAG with PDF
 
-ScreenShot:
-Pdf_Provided:
-![Screenshot](https://raw.githubusercontent.com/prabigya-pathak108/ConvoAgentiChatbot/refs/heads/main/images/provided_pdf.PNG)
+In this section, we show how to use **RAG** with a PDF file. For this example, I used my own CV in PDF format.
 
+### Upload a PDF and Perform RAG
 
-Question Asked: Give me education of Prabigya
-![Screenshot](https://raw.githubusercontent.com/prabigya-pathak108/ConvoAgentiChatbot/refs/heads/main/images/education_p.PNG)
+We will use the **Recursive Character Splitting** method with a chunk size of `1000` and margin `200`.
 
-Question Asked: Give me list of skills and projects of Prabigya
-![Screenshot](https://raw.githubusercontent.com/prabigya-pathak108/ConvoAgentiChatbot/refs/heads/main/images/skill_and_proj.PNG)
+**PDF Provided:**
 
+![Provided PDF](https://raw.githubusercontent.com/prabigya-pathak108/ConvoAgentiChatbot/refs/heads/main/images/provided_pdf.PNG)
 
-### Now lets ask for appointment in the same chat
-To invoke conversational form, user needs to enter quert like call me, book me, give me schedule, book an appointment, etc that semantically represents appointment booking.
+### Example 1: Query for Education
 
-Question Asked: call me for appointment
+**Question Asked:** "Give me education of Prabigya"
 
-When this is called, chain to retrieve user information is called on its own.
-Following field are collected:
-Name, Email and Date-  Other can be added
+![Education Response](https://raw.githubusercontent.com/prabigya-pathak108/ConvoAgentiChatbot/refs/heads/main/images/education_p.PNG)
 
-validation for email and date are provided. When user provides invalid information 
-(email or date), they are asked again to reenter that field.
+### Example 2: Query for Skills and Projects
 
-For date: Dates in natural text are parsed to actual date. Correct date for terms like next Sunday, day after tomorrow, Jan 2, 2025 are parsed and if date of booking is less than present date, date is made invalid and user is asked again to reenter that field.
+**Question Asked:** "Give me list of skills and projects of Prabigya"
 
-User info collecttions are asked untill all required fields are obtained. Then user can return to normal chat and use RAG(QA).
+![Skills and Projects Response](https://raw.githubusercontent.com/prabigya-pathak108/ConvoAgentiChatbot/refs/heads/main/images/skill_and_proj.PNG)
 
-Steps:
-1. User Query invokes conversational form in normal chat
-![Screenshot](https://raw.githubusercontent.com/prabigya-pathak108/ConvoAgentiChatbot/refs/heads/main/images/1_call_for_appoint.PNG)
+### Appointment Booking via Chat
 
-2. User information collection questions are asked
-i. Name is asked
-ii. Email is asked
-![Screenshot](https://raw.githubusercontent.com/prabigya-pathak108/ConvoAgentiChatbot/refs/heads/main/images/2_ask_for_email.PNG)
+To invoke the conversational form for appointment booking, the user needs to type queries like "call me", "book me", "give me schedule", or "book an appointment".
 
-If wrong email is entered, another question saying incorrect email, give new email is asked.
-![Screenshot](https://raw.githubusercontent.com/prabigya-pathak108/ConvoAgentiChatbot/refs/heads/main/images/3_wrong_email_detected.PNG)
+**Question Asked:** "Call me for appointment"
 
-iii. Once valid email is passed. Date to be scheduled for appointment is asked. 
-![Screenshot](https://raw.githubusercontent.com/prabigya-pathak108/ConvoAgentiChatbot/refs/heads/main/images/4_email_accepted.PNG)
+Once triggered, the system collects user information including:
+- Name
+- Email
+- Date
 
+**Steps:**
 
-User entered: Next Saturday in date question. The converted date is: 2025-1-4
+1. **User Query:** Invocation of the conversational form
+   ![Call for Appointment](https://raw.githubusercontent.com/prabigya-pathak108/ConvoAgentiChatbot/refs/heads/main/images/1_call_for_appoint.PNG)
 
-After all user information is collected, AI returns final response indicating all user information collected.
-![Screenshot](https://raw.githubusercontent.com/prabigya-pathak108/ConvoAgentiChatbot/refs/heads/main/images/5_date_accepted.PNG)
+2. **User Information Collection:**
+   - Name is asked
+   - Email is asked
 
+   **Email Validation:**
+   If an incorrect email is entered, the user is prompted to re-enter the email.
 
-If exit key is submitted. The chatting stops.
-![Screenshot](https://raw.githubusercontent.com/prabigya-pathak108/ConvoAgentiChatbot/refs/heads/main/images/6_exit.PNG)
+   ![Ask for Email](https://raw.githubusercontent.com/prabigya-pathak108/ConvoAgentiChatbot/refs/heads/main/images/2_ask_for_email.PNG)
 
+   
+   ![Wrong Email Detected](https://raw.githubusercontent.com/prabigya-pathak108/ConvoAgentiChatbot/refs/heads/main/images/3_wrong_email_detected.PNG)
 
-## RAG in txt file
+3. **Date Collection for Appointment:**
+   Once the email is validated, the system asks for the appointment date.
 
-A txt file is created about Laxmi Prasad Devkota by using the text available in Wikipedia.
+   **Converted Date:**
+   If a natural language date is provided, it is converted into an actual date.
 
-File Used:
-![Screenshot](https://raw.githubusercontent.com/prabigya-pathak108/ConvoAgentiChatbot/refs/heads/main/images/txt_lpd.PNG)
+   ![Date Accepted](https://raw.githubusercontent.com/prabigya-pathak108/ConvoAgentiChatbot/refs/heads/main/images/4_email_accepted.PNG)
 
-Vector database using BAAI/bge-base-en-v1.5 model, FAISS database is created. Retriver is made with ensemble method of keyword retriever and semantic retriever. Reranking is done with Cohere AI. RAG-QA chain, conversational form, classification chain are initialized and ready to operate.
+4. **Final Response:**
+   Once all required fields are collected, the system returns a confirmation with all collected user data.
 
-Question Asked: When was Laxmi Prasad Devkota born? Summarize his political life.
-![Screenshot](https://raw.githubusercontent.com/prabigya-pathak108/ConvoAgentiChatbot/refs/heads/main/images/l1.PNG)
+   ![Final Response](https://raw.githubusercontent.com/prabigya-pathak108/ConvoAgentiChatbot/refs/heads/main/images/5_date_accepted.PNG)
 
-Question Asked: Give me the wrong literatures of Laxmi Prasad Devkota that caused war.
+5. **Exit:**
+   If the user submits an "exit" command, the chat session stops.
 
-If the data regarding question is not available in the provided file, it is clearly mentioned to LLM to return "I don't know" as its response in prompt.
-SO we get desired result.
+   ![Exit](https://raw.githubusercontent.com/prabigya-pathak108/ConvoAgentiChatbot/refs/heads/main/images/6_exit.PNG)
 
-![Screenshot](https://raw.githubusercontent.com/prabigya-pathak108/ConvoAgentiChatbot/refs/heads/main/images/l2_idk.PNG)
+## RAG with TXT File
 
+In this section, we show how to use **RAG** with a `.txt` file created from the Wikipedia text about **Laxmi Prasad Devkota**.
 
-Question Asked: List poems of him.
-![Screenshot](https://raw.githubusercontent.com/prabigya-pathak108/ConvoAgentiChatbot/refs/heads/main/images/l3_more_answer.PNG)
+### File Used:
+![TXT File](https://raw.githubusercontent.com/prabigya-pathak108/ConvoAgentiChatbot/refs/heads/main/images/txt_lpd.PNG)
+
+A **FAISS** vector database is created using the **BAAI/bge-base-en-v1.5** model. An ensemble method of keyword and semantic retrievers is used, and **Cohere AI** is used for reranking. 
+
+### Example 1: Query for Laxmi Prasad Devkota's Birth
+
+**Question Asked:** "When was Laxmi Prasad Devkota born? Summarize his political life."
+
+![Answer 1](https://raw.githubusercontent.com/prabigya-pathak108/ConvoAgentiChatbot/refs/heads/main/images/l1.PNG)
+
+### Example 2: Query for Wrong Literatures of Laxmi Prasad Devkota
+
+**Question Asked:** "Give me the wrong literatures of Laxmi Prasad Devkota that caused war."
+
+If the data is not available, the system responds with "I don't know."
+
+![Answer 2](https://raw.githubusercontent.com/prabigya-pathak108/ConvoAgentiChatbot/refs/heads/main/images/l2_idk.PNG)
+
+### Example 3: Query for Poems of Laxmi Prasad Devkota
+
+**Question Asked:** "List poems of him."
+
+![Answer 3](https://raw.githubusercontent.com/prabigya-pathak108/ConvoAgentiChatbot/refs/heads/main/images/l3_more_answer.PNG)
+
+## Conclusion
+
+This project demonstrates how RAG can be implemented in various formats like PDF, TXT,JSON, HTML, etc with conversational forms for collecting user information and answering queries based on the provided documents. The system uses advanced natural language processing techniques like semantic search, reranking, and entity extraction for a seamless experience.
