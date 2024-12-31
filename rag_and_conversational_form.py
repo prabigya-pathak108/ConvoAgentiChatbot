@@ -130,14 +130,14 @@ def handle_user_input(user_query,classification_chain,qa_chain):
     
 api_key=GEMINI_API_KEY
 model_name=MODEL_NAME
+file_location=r"C:\Users\prabigya\Desktop\work_here\CHATBOT_WIth_CONV_Form\PrabigyaPathakCV.pdf"
+vector_store_docs,vectorstore=vector_store_creator_from_file(file_location,embeddings=embeddings,splitting_type="recursive")
+compression_retriever=retriever_maker_for_rag_and_compressor(vectorstore=vectorstore,vector_store_docs=vector_store_docs)
+
+qa_chain=qa_chain_maker(api_key=api_key,model_name=model_name,compression_retriever=compression_retriever)
+classification_chain=get_classification_llm_chain(model=model_name,used_api_key=api_key)
 
 while(1):
-    file_location=r"C:\Users\prabigya\Desktop\work_here\chatbot_docs_form\FileParser\sample2.json"
-    vector_store_docs,vectorstore=vector_store_creator_from_file(file_location,embeddings=embeddings,splitting_type="recursive")
-    compression_retriever=retriever_maker_for_rag_and_compressor(vectorstore=vectorstore,vector_store_docs=vector_store_docs)
-
-    qa_chain=qa_chain_maker(api_key=api_key,model_name=model_name,compression_retriever=compression_retriever)
-    classification_chain=get_classification_llm_chain(model=model_name,used_api_key=api_key)
     query=str(input("Enter Question: "))
     if query.lower().strip() == "exit":
         break
