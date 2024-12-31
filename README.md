@@ -69,18 +69,6 @@ We can explicitly pass the type of chunking method we want to apply also.
     - Validates against current date
     - Converts relative dates to absolute timestamps
 
-### Usage Examples
-
-#### PDF Document Processing
-```python
-# Configuration for PDF processing
-chunk_size = 1000
-chunk_overlap = 200
-splitting_method = RecursiveCharacterTextSplitting(
-    chunk_size=chunk_size,
-    chunk_overlap=chunk_overlap
-)
-```
 
 #### Appointment Booking Flow
 1. User initiates with booking trigger phrase
