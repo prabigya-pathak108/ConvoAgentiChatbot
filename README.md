@@ -128,8 +128,8 @@ The following file formats are supported and their corresponding chunking method
 
 
 ScreenShot:
-![Screenshot](https://raw.githubusercontent.com/prabigya-pathak108/ConvoAgenticBot/refs/heads/main/images/supported_file_formats.png)
-![Screenshot](https://raw.githubusercontent.com/prabigya-pathak108/ConvoAgenticBot/refs/heads/main/images/chunking_methods.png)
+![Screenshot](https://raw.githubusercontent.com/prabigya-pathak108/ConvoAgentiChatbot/refs/heads/main/images/supported_file_formats.png)
+![Screenshot](https://raw.githubusercontent.com/prabigya-pathak108/ConvoAgentiChatbot/refs/heads/main/images/chunking_methods.png)
 
 Lets upload one pdf and check RAG.
 We will be using Recursive Character splitting with chunk size=1000 and margin =200
@@ -138,14 +138,14 @@ I will be using my own CV for this.
 
 ScreenShot:
 Pdf_Provided:
-![Screenshot](https://raw.githubusercontent.com/prabigya-pathak108/ConvoAgenticBot/refs/heads/main/images/provided_pdf.png)
+![Screenshot](https://raw.githubusercontent.com/prabigya-pathak108/ConvoAgentiChatbot/refs/heads/main/images/provided_pdf.png)
 
 
 Question Asked: Give me education of Prabigya
-![Screenshot](https://raw.githubusercontent.com/prabigya-pathak108/ConvoAgenticBot/refs/heads/main/images/education_p.png)
+![Screenshot](https://raw.githubusercontent.com/prabigya-pathak108/ConvoAgentiChatbot/refs/heads/main/images/education_p.png)
 
 Question Asked: Give me list of skills and projects of Prabigya
-![Screenshot](https://raw.githubusercontent.com/prabigya-pathak108/ConvoAgenticBot/refs/heads/main/images/skill_and_proj.png)
+![Screenshot](https://raw.githubusercontent.com/prabigya-pathak108/ConvoAgentiChatbot/refs/heads/main/images/skill_and_proj.png)
 
 
 ### Now lets ask for appointment in the same chat
@@ -166,28 +166,28 @@ User info collecttions are asked untill all required fields are obtained. Then u
 
 Steps:
 1. User Query invokes conversational form in normal chat
-![Screenshot](https://raw.githubusercontent.com/prabigya-pathak108/ConvoAgenticBot/refs/heads/main/images/1_call_for_appoint.png)
+![Screenshot](https://raw.githubusercontent.com/prabigya-pathak108/ConvoAgentiChatbot/refs/heads/main/images/1_call_for_appoint.png)
 
 2. User information collection questions are asked
 i. Name is asked
 ii. Email is asked
-![Screenshot](https://raw.githubusercontent.com/prabigya-pathak108/ConvoAgenticBot/refs/heads/main/images/2_ask_for_email.png)
+![Screenshot](https://raw.githubusercontent.com/prabigya-pathak108/ConvoAgentiChatbot/refs/heads/main/images/2_ask_for_email.png)
 
 If wrong email is entered, another question saying incorrect email, give new email is asked.
-![Screenshot](https://raw.githubusercontent.com/prabigya-pathak108/ConvoAgenticBot/refs/heads/main/images/3_wrong_email_detected.png)
+![Screenshot](https://raw.githubusercontent.com/prabigya-pathak108/ConvoAgentiChatbot/refs/heads/main/images/3_wrong_email_detected.png)
 
 iii. Once valid email is passed. Date to be scheduled for appointment is asked. 
-![Screenshot](https://raw.githubusercontent.com/prabigya-pathak108/ConvoAgenticBot/refs/heads/main/images/4_email_accepted.png)
+![Screenshot](https://raw.githubusercontent.com/prabigya-pathak108/ConvoAgentiChatbot/refs/heads/main/images/4_email_accepted.png)
 
 
 User entered: Next Saturday in date question. The converted date is: 2025-1-4
 
 After all user information is collected, AI returns final response indicating all user information collected.
-![Screenshot](https://raw.githubusercontent.com/prabigya-pathak108/ConvoAgenticBot/refs/heads/main/images/5_date_accepted.png)
+![Screenshot](https://raw.githubusercontent.com/prabigya-pathak108/ConvoAgentiChatbot/refs/heads/main/images/5_date_accepted.png)
 
 
 If exit key is submitted. The chatting stops.
-![Screenshot](https://raw.githubusercontent.com/prabigya-pathak108/ConvoAgenticBot/refs/heads/main/images/6_exit.png)
+![Screenshot](https://raw.githubusercontent.com/prabigya-pathak108/ConvoAgentiChatbot/refs/heads/main/images/6_exit.png)
 
 
 ## RAG in txt file
@@ -195,20 +195,20 @@ If exit key is submitted. The chatting stops.
 A txt file is created about Laxmi Prasad Devkota by using the text available in Wikipedia.
 
 File Used:
-![Screenshot](https://raw.githubusercontent.com/prabigya-pathak108/ConvoAgenticBot/refs/heads/main/images/txt_lpd.png)
+![Screenshot](https://raw.githubusercontent.com/prabigya-pathak108/ConvoAgentiChatbot/refs/heads/main/images/txt_lpd.png)
 
 Vector database using BAAI/bge-base-en-v1.5 model, FAISS database is created. Retriver is made with ensemble method of keyword retriever and semantic retriever. Reranking is done with Cohere AI. RAG-QA chain, conversational form, classification chain are initialized and ready to operate.
 
 Question Asked: When was Laxmi Prasad Devkota born? Summarize his political life.
-![Screenshot](https://raw.githubusercontent.com/prabigya-pathak108/ConvoAgenticBot/refs/heads/main/images/l1.png)
+![Screenshot](https://raw.githubusercontent.com/prabigya-pathak108/ConvoAgentiChatbot/refs/heads/main/images/l1.png)
 
 Question Asked: Give me the wrong literatures of Laxmi Prasad Devkota that caused war.
 
 If the data regarding question is not available in the provided file, it is clearly mentioned to LLM to return "I don't know" as its response in prompt.
 SO we get desired result.
 
-![Screenshot](https://raw.githubusercontent.com/prabigya-pathak108/ConvoAgenticBot/refs/heads/main/images/l2_idk.png)
+![Screenshot](https://raw.githubusercontent.com/prabigya-pathak108/ConvoAgentiChatbot/refs/heads/main/images/l2_idk.png)
 
 
 Question Asked: List poems of him.
-![Screenshot](https://raw.githubusercontent.com/prabigya-pathak108/ConvoAgenticBot/refs/heads/main/images/l3_more_answer.png)
+![Screenshot](https://raw.githubusercontent.com/prabigya-pathak108/ConvoAgentiChatbot/refs/heads/main/images/l3_more_answer.png)
