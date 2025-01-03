@@ -16,7 +16,7 @@ import random
 nlp = spacy.load("en_core_web_sm")
 
 class NameField(BaseModel):
-    text: str = Field(description="should be a search query")
+    text: str = Field(description="name of person present in user query")
 class EmailField(BaseModel):
     email: str = Field(description="email of user in search query")
 class DateField(BaseModel):
